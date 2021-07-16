@@ -10,7 +10,8 @@ Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
-    .setPublicPath('/build')
+    // .setPublicPath('/build')
+    .setPublicPath('/ReuSi/public/build')
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
 
@@ -57,6 +58,8 @@ Encore
 
     // enables Sass/SCSS support
     .enableSassLoader()
+
+    .enablePostCssLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
