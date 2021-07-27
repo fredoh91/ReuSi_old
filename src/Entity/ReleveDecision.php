@@ -30,16 +30,6 @@ class ReleveDecision
     private $NiveauRisque;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $PassageCTP;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $PassageRSS;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $InfoAvis;
@@ -58,6 +48,16 @@ class ReleveDecision
      * @ORM\OneToMany(targetEntity=Mesure::class, mappedBy="MesureReleveDecision")
      */
     private $mesures;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=PassageCTP::class, inversedBy="releveDecisions")
+     */
+    private $PassageCTP;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=PassageRSS::class, inversedBy="releveDecisions")
+     */
+    private $PassageRSS;
 
     public function __construct()
     {
@@ -89,30 +89,6 @@ class ReleveDecision
     public function setNiveauRisque(?string $NiveauRisque): self
     {
         $this->NiveauRisque = $NiveauRisque;
-
-        return $this;
-    }
-
-    public function getPassageCTP(): ?string
-    {
-        return $this->PassageCTP;
-    }
-
-    public function setPassageCTP(?string $PassageCTP): self
-    {
-        $this->PassageCTP = $PassageCTP;
-
-        return $this;
-    }
-
-    public function getPassageRSS(): ?string
-    {
-        return $this->PassageRSS;
-    }
-
-    public function setPassageRSS(?string $PassageRSS): self
-    {
-        $this->PassageRSS = $PassageRSS;
 
         return $this;
     }
@@ -179,6 +155,30 @@ class ReleveDecision
                 $mesure->setMesureReleveDecision(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPassageCTP(): ?PassageCTP
+    {
+        return $this->PassageCTP;
+    }
+
+    public function setPassageCTP(?PassageCTP $PassageCTP): self
+    {
+        $this->PassageCTP = $PassageCTP;
+
+        return $this;
+    }
+
+    public function getPassageRSS(): ?PassageRSS
+    {
+        return $this->PassageRSS;
+    }
+
+    public function setPassageRSS(?PassageRSS $PassageRSS): self
+    {
+        $this->PassageRSS = $PassageRSS;
 
         return $this;
     }
